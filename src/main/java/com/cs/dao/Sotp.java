@@ -1,5 +1,8 @@
 package com.cs.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,9 +22,11 @@ public class Sotp implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="idProjet", nullable=false)
+    @JsonBackReference
     private Projet projet;
 
     @OneToMany(targetEntity=Tache.class, mappedBy="sotp")
+    @JsonManagedReference
     private List<Tache> taches = new ArrayList<>();
 
     @OneToOne

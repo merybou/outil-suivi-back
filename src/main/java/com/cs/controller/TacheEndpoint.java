@@ -4,9 +4,7 @@ import com.cs.dao.Tache;
 import com.cs.dao.repository.TacheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,10 +15,25 @@ public class TacheEndpoint {
     TacheRepository tacheRepository;
 
     @GetMapping(value="/taches")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Tache> getTaches() {
+    public List<Tache> recupererTaches() {
         List<Tache> taches = tacheRepository.findAll();
         return taches;
+    }
+
+    @PostMapping(value = "/tache")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Tache creerTache(@RequestBody Tache tache) {
+        return tacheRepository.save(tache);
+    }
+
+    @PutMapping(value = "/tache")
+    public Tache mettreAJourTache(@RequestBody Tache tache) {
+        return tacheRepository.save(tache);
+    }
+
+    @DeleteMapping(value = "/tache/{idTache}")
+    public void supprimerTache(@PathVariable long idTache) {
+        tacheRepository.deleteById(idTache);
     }
 
 }

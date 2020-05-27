@@ -1,5 +1,7 @@
 package com.cs.dao;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,14 +12,15 @@ import java.util.List;
 public class Projet implements Serializable {
 
     @Id
-    @GeneratedValue
-    private Long numero;
+//    @GeneratedValue
+    private long numero;
     private String libelle;
     private String client;
     private Date dateDebut;
     private Date dateFin;
 
     @OneToMany(targetEntity = Sotp.class, mappedBy = "projet")
+    @JsonManagedReference
     private List<Sotp> sotps = new ArrayList<>();
 
     @ManyToOne
@@ -37,11 +40,11 @@ public class Projet implements Serializable {
     }
 
 
-    public Long getNumero() {
+    public long getNumero() {
         return numero;
     }
 
-    public void setNumero(Long numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 

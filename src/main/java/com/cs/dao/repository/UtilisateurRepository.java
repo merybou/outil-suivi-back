@@ -2,8 +2,17 @@ package com.cs.dao.repository;
 
 import com.cs.dao.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
+
+@RepositoryRestResource
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long> {
-//    @Query("select u from Utilisateur u where u.nom like :x")
-//    public List<Utilisateur> utilisateursParMc(@Param("x")String mc);
+
+
+    public List<Utilisateur> findByLoginAndMotDePasse(@Param("login")String log,@Param("motDePasse") String pass);
+
+
 }

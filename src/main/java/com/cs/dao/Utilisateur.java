@@ -15,6 +15,7 @@ public class Utilisateur implements Serializable {
     private String nom;
     private String prenom;
     private String motDePasse;
+    private String login;
     private String role;
 
     @ManyToMany
@@ -27,11 +28,20 @@ public class Utilisateur implements Serializable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String motDePasse, String role) {
+    public Utilisateur(String nom, String prenom, String motDePasse, String role, String login) {
         this.nom = nom;
         this.prenom = prenom;
         this.motDePasse = motDePasse;
         this.role = role;
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Long getId() {

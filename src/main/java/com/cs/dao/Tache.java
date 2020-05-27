@@ -1,5 +1,7 @@
 package com.cs.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class Tache implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="numeroSotp", nullable = false)
+    @JsonBackReference
     private Sotp sotp;
 
     @ManyToMany
@@ -32,6 +35,7 @@ public class Tache implements Serializable {
 
     public Tache(String nom, Date dateDebut, Date dateFin, int ctp, List<Utilisateur> collaborateurs) {
         this.nom = nom;
+       // @Temporal(TemporalType.DATE)
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.ctp = ctp;
